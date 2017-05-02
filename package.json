@@ -1,0 +1,45 @@
+{
+  "name": "scale360-react-native",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^3.19.0",
+    "eslint-config-react-app": "^0.6.2",
+    "eslint-plugin-flowtype": "^2.32.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "jest-expo": "^0.4.0",
+    "nock": "^9.0.13",
+    "react-native-scripts": "0.0.29",
+    "react-test-renderer": "16.0.0-alpha.6"
+  },
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "scripts": {
+    "start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "test": "node node_modules/jest/bin/jest.js --watch",
+    "make": "sh ./command.sh",
+    "eslint": "sh ./eslint.sh",
+    "redux": "sh ./redux.sh"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "expo": "^16.0.0",
+    "react": "16.0.0-alpha.6",
+    "react-native": "^0.43.4",
+    "react-native-redux-router": "^1.0.7",
+    "react-redux": "^5.0.4",
+    "redux": "^3.6.0",
+    "redux-mock-store": "^1.2.3",
+    "redux-thunk": "^2.2.0"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  }
+}
