@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Button, ScrollView } from 'react-native'
+import { View, Button, ListView } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { taskActions } from '../../../core/task';
@@ -47,32 +47,37 @@ class Task extends React.Component {
     this.props.taskActions.deleteTask(id)
   }
 
-  render() {
-    const { tasks, loading } = this.props
-    const listData = (tasks.length) ? tasks.map((item) => (
+  renderRow(rowData, sectionID, rowID) {
+    return (
       <TaskItem
-        key={item.id}
-        task={item}
+        key={rowID}
+        task={rowData}
         updateTask={(data) => this.updateTask(data)}
         deleteTask={(id) => this.deleteTask(id)} />
-    )) : <TitleDisplay title="No data to display" />
+    )
+  }
+
+  listView(data, loading) {
+    const dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.guid !== r2.guid })
+    const dataSourceClone = dataSource.cloneWithRows(data)
+    const listData = (data.length) ? (
+      <ListView dataSource={dataSourceClone} renderRow={this.renderRow.bind(this)} />
+    ) : <TitleDisplay title='No data to display' />
+
+    return loading ? <TitleDisplay title='Loading...' /> : listData
+  }
+
+  render() {
+    const { tasks, loading } = this.props
     return (
       <View style={styles.container}>
         <TaskForm addTask={(title) => this.addTask(title)} onPrev={() => this.onPrev()} />
-        <View style={{ flex: 1, flexDirection: 'column'}}>
-          <ScrollView
-            automaticallyAdjustContentInsets={false}
-            vertical={true}
-            horizontal={false}
-          >
-            { (!loading) ? listData : <TitleDisplay title="Loading..." />}
-          </ScrollView>
-          <Button
-            onPress={() => this.onPrev()}
-            style={{ flex: 1, alignSelf: 'center', justifyContent: 'center' }}
-            title="Go to Home page"
-          />
-        </View>
+        { this.listView(tasks, loading) }
+        <Button
+          onPress={() => this.onPrev()}
+          style={{ flex: 1, alignSelf: 'center', justifyContent: 'center' }}
+          title="Go to Home page"
+        />
       </View>
     )
   }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Button, Switch, TextInput } from 'react-native'
+import { View, Text, StyleSheet, Button, Switch, TextInput, TouchableHighlight } from 'react-native'
 import { btnWarning, btnSuccess, btnDanger, defaultColor } from '../../styles/variables'
 
 const styles = StyleSheet.create({
@@ -124,18 +124,24 @@ class TaskItem extends React.Component {
   render() {
     const { task } = this.props
     return (
-      <View style={styles.container}>
-        <View style={{ width: 50 }} >
-          <Switch
-            onValueChange={() => this.toggleStatus(task)}
-            value={task.completed}
-          />
+      <TouchableHighlight
+        accessible={true}
+        accessibilityLabel={task.id}
+        onPress={() => this.toggleStatus(task)}
+        underlayColor='rgba(14, 43, 77, 0.03)' >
+        <View style={styles.container}>
+          <View style={{ width: 50 }} >
+            <Switch
+              onValueChange={() => this.toggleStatus(task)}
+              value={task.completed}
+            />
+          </View>
+          <View style={{ flex: 1 }} >
+            { this.state.editing ? this.renderTitleInput(task) : this.renderTitle(task) }
+          </View>
+          { this.state.editing ? this.renderButtonEdit(task) : this.renderButton(task) }
         </View>
-        <View style={{ flex: 1 }} >
-          { this.state.editing ? this.renderTitleInput(task) : this.renderTitle(task) }
-        </View>
-        { this.state.editing ? this.renderButtonEdit(task) : this.renderButton(task) }
-      </View>
+      </TouchableHighlight>
     )
   }
 }
