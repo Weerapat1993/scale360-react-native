@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-const white = '#FFF'
+const grey = '#CCC'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     height: 500
   },
   loading: {
-    color: white,
+    color: grey,
     fontSize: 24,
     alignItems: 'center',
     justifyContent: 'center'

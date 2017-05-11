@@ -3,6 +3,7 @@ import Flex from './Flex'
 import Header from './Header'
 import Footer from './Footer'
 import Layout from './Layout'
+import TabBar from './TabBar'
 
 export {
   Grid,
@@ -10,4 +11,5 @@ export {
   Header,
   Footer,
   Layout,
+  TabBar,
 }

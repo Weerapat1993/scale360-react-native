@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { StyleSheet, TextInput, View, Text, Button } from 'react-native'
+import { StyleSheet, TextInput, View, Text } from 'react-native'
+import { Button } from 'react-native-elements'
 import { Field, reduxForm } from 'redux-form'
 import { taskValidation } from '../../core/form/taskValidation'
 import { btnSuccess } from '../styles/globalStyle'
@@ -7,7 +8,7 @@ import { btnSuccess } from '../styles/globalStyle'
 const styles = StyleSheet.create({
   inputContainer: {
     padding: 8,
-    backgroundColor: 'steelblue',
+    backgroundColor: '#3f51b5',
     flexDirection: 'row',
     alignItems: 'stretch'
   },
@@ -50,17 +51,19 @@ class TaskForm extends Component {
     const { handleSubmit, onPrev } = this.props
     return (
       <View style={styles.inputContainer}>
-        <View style={{ width: 50 }}>
-          <Button onPress={onPrev} title="<" color={btnSuccess} />
-        </View>
+        <Button 
+          onPress={onPrev} 
+          icon={{ name: 'arrow-left', type: 'font-awesome' }} 
+          backgroundColor={`#3f51b5`}
+          buttonStyle={{ margin: 0, padding: 0 , height: 40 }}
+        />
         <Field name='title' component={renderField} placeholder='Add Task' />
-        <View style={{ width: 75 }}>
-          <Button
-            onPress={handleSubmit}
-            title="Add"
-            color={btnSuccess}
-          />
-        </View>
+        <Button
+          onPress={handleSubmit}
+          title="Add"
+          backgroundColor={`#3f51b5`}
+          buttonStyle={{ margin: 0, padding: 0 , height: 40 }}
+        />
       </View>
     );
   }

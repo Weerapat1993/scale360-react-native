@@ -1,13 +1,13 @@
 import React from 'react'
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
 
 
 class Footer extends React.Component {
   render() {
-    const { height, color, children } = this.props
+    const { height, color } = this.props
     return (
       <View style={{ flexDirection: 'row', height, backgroundColor: color, alignItems: 'center', justifyContent: 'center' }} >
-        { children }
+        <Text style={{ color: 'white' }}>Footer</Text>
       </View>
     )
   }

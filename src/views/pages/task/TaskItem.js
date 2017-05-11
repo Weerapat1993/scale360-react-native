@@ -1,6 +1,8 @@
 import React from 'react'
-import { View, Text, StyleSheet, Button, Switch, TextInput, TouchableHighlight } from 'react-native'
+import { View, Text, StyleSheet, Switch, TouchableHighlight } from 'react-native'
+import { Button, FormInput, CheckBox } from 'react-native-elements'
 import { btnWarning, btnSuccess, btnDanger, defaultColor } from '../../styles/variables'
+import { Flex } from '../../components/flex'
 
 const styles = StyleSheet.create({
   container: {
@@ -80,12 +82,13 @@ class TaskItem extends React.Component {
 
   renderTitleInput(task) {
     return (
-      <TextInput
-        placeholder="Edit Task"
-        onChangeText={title => this.setState({title}) }
-        value={this.state.title}
-        style={styles.inputEdit}
-      />
+      <Flex>
+        <FormInput
+          placeholder="Edit Task"
+          onChangeText={title => this.setState({title}) }
+          value={this.state.title}
+        />
+      </Flex>
     )
   }
 
@@ -94,15 +97,17 @@ class TaskItem extends React.Component {
       <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
         <Button
           onPress={() => this.editTitle()}
+          raised
           title="Edit"
-          style={{ flex: 1, height: 30 }}
-          color={btnWarning}
+          backgroundColor={btnWarning}
+          containerStyle={{ margin: 0 , height: 30 }}
         />
         <Button
           onPress={() => this.deleteTask(task.id)}
+          raised
           title="Delete"
-          style={{ flex: 1, height: 30 }}
-          color={btnDanger}
+          backgroundColor={btnDanger}
+          containerStyle={{ margin: 0, height: 30 }}
         />
       </View>
     )
@@ -114,8 +119,9 @@ class TaskItem extends React.Component {
         <Button
           onPress={() => this.updateTask()}
           title="Update"
-          style={{ flex: 1, height: 30 }}
-          color={btnSuccess}
+          raised
+          backgroundColor={btnSuccess}
+          buttonStyle={{ margin: 0 , height: 30 }}
         />
       </View>
     )
@@ -130,14 +136,17 @@ class TaskItem extends React.Component {
         underlayColor='rgba(14, 43, 77, 0.03)' >
         <View style={styles.container}>
           <View style={{ width: 50 }} >
-            <Switch
-              onValueChange={() => this.toggleStatus(task)}
-              value={task.completed}
+            <CheckBox
+              checked={task.completed}
+              onPress={() => this.toggleStatus(task)}
+              checkedIcon='check'
+              uncheckedIcon='close'
+              containerStyle={{ padding: 0, backgroundColor: 'white', borderColor: 'white' }}
             />
           </View>
-          <View style={{ flex: 1 }} >
+          <Flex>
             { this.state.editing ? this.renderTitleInput(task) : this.renderTitle(task) }
-          </View>
+          </Flex>
           { this.state.editing ? this.renderButtonEdit(task) : this.renderButton(task) }
         </View>
       </TouchableHighlight>

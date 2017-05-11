@@ -9,6 +9,7 @@ import { styles } from './styles'
 import TitleDisplay from '../../components/titleDisplay'
 import TaskForm from '../../forms/TaskForm'
 import TaskItem from './TaskItem'
+import { Footer } from '../../components/flex'
 
 class Task extends React.Component {
   componentDidMount() {
@@ -75,11 +76,7 @@ class Task extends React.Component {
       <View style={styles.container}>
         <TaskForm onSubmit={this.createTask} onPrev={() => this.onPrev()} />
         { this.listView(tasks, loading) }
-        <Button
-          onPress={() => this.onPrev()}
-          style={{ flex: 1, alignSelf: 'center', justifyContent: 'center' }}
-          title="Go to Home page"
-        />
+        <Footer />
       </View>
     )
   }

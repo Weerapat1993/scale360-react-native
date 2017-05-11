@@ -1,10 +1,9 @@
 import React from 'react'
 import { Text } from 'react-native'
-import { Grid, Flex, Header, Footer } from './index'
+import { Grid, Flex, Header, TabBar } from './index'
 
 class Layout extends React.Component {
   render () {
-    console.log(this.props.navigator)
     return (
       <Grid flexDirection='column'>
         <Header>
@@ -15,9 +14,7 @@ class Layout extends React.Component {
             { this.props.children }
           </Flex>
         </Grid>
-        <Footer>
-          <Text style={{ color: 'white' }}>Footer</Text>
-        </Footer>
+        <TabBar />
       </Grid>
     )
   }
