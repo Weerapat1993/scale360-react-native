@@ -32,8 +32,8 @@ export function createData(state,action) {
   return {
     loading: false,
     data: [
-      action.payload,
       ...state.data,
+      action.payload
     ]
   }
 }

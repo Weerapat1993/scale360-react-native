@@ -63,7 +63,7 @@ describe('async actions '+TASK.FETCH.REQUEST, () => {
   it('creates when fetching todos has been done', () => {
     const expected = [
       { type: TASK.FETCH.REQUEST, payload: true },
-      { type: TASK.FETCH.SUCCESS, payload: data }
+      { type: TASK.FETCH.FAILURE, payload: false }
     ]
     const store = mockStore({ task: {} })
     const recieved = store.getActions()

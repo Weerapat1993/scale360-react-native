@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
-import { View, Text } from 'react-native'
-import
+import { Text } from 'react-native'
+import { Layout } from '../components/flex'
 
 class ${name_pascal} extends React.Component {
   render () {

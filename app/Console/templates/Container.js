@@ -1,15 +1,17 @@
 import React, { PropTypes } from 'react'
+import { Text } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ${name}Actions, get${name_pascal}Filter } from '../../core/${name}';
+import { Layout } from '../components/flex'
 
 class ${name_pascal} extends React.Component {
   render() {
     const { children } = this.props;
     return (
-      <div>
-        ${name_pascal}
-      </div>
+      <Layout>
+        <Text>${name_pascal}</Text>
+      </Layout>
     )
   }
 }
@@ -19,7 +21,7 @@ class ${name_pascal} extends React.Component {
 //-------------------------------------
 
 ${name_pascal}.propTypes = {
-
+  children: PropsType.any
 }
 
 //=====================================

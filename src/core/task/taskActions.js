@@ -25,3 +25,11 @@ export const deleteTask = (payload) => payloadActions({
   type: TASK.DELETE,
   payload
 })
+
+// export const fetchTask = () => (dispatch, getState) => {
+//   dispatch(actionRequest(true, 'FETCH_TASK_REQUEST'))
+//   fetch(API.TASK)
+//     .then(res => res.json())
+//     .then(res => dispatch(actionSuccess(res, 'FETCH_TASK_SUCCESS')))
+//     .catch(error => dispatch(actionFailure(false, 'FETCH_TASK_FAILURE', error)))
+// }

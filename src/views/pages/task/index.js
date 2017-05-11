@@ -2,11 +2,12 @@ import React from 'react'
 import { View, Button, ListView } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { reset } from 'redux-form'
 import { taskActions } from '../../../core/task';
 import { styles } from './styles'
 
 import TitleDisplay from '../../components/titleDisplay'
-import TaskForm from './TaskForm'
+import TaskForm from '../../forms/TaskForm'
 import TaskItem from './TaskItem'
 
 class Task extends React.Component {
@@ -30,13 +31,14 @@ class Task extends React.Component {
     }
   }
 
-  addTask(title) {
-    let data = {
+  createTask(values, dispatch, props) {
+    const data = {
       id: new Date().getTime(),
-      title,
-      completed: true
+      title: values.title,
+      completed: false
     }
-    this.props.taskActions.createTask(data)
+    dispatch(taskActions.createTask(data));
+    dispatch(reset('task'));
   }
 
   updateTask(data) {
@@ -71,7 +73,7 @@ class Task extends React.Component {
     const { tasks, loading } = this.props
     return (
       <View style={styles.container}>
-        <TaskForm addTask={(title) => this.addTask(title)} onPrev={() => this.onPrev()} />
+        <TaskForm onSubmit={this.createTask} onPrev={() => this.onPrev()} />
         { this.listView(tasks, loading) }
         <Button
           onPress={() => this.onPrev()}

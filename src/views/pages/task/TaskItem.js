@@ -126,7 +126,6 @@ class TaskItem extends React.Component {
     return (
       <TouchableHighlight
         accessible={true}
-        accessibilityLabel={task.id}
         onPress={() => this.toggleStatus(task)}
         underlayColor='rgba(14, 43, 77, 0.03)' >
         <View style={styles.container}>
