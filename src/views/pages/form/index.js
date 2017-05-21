@@ -1,7 +1,14 @@
 import React from 'react'
+import { View } from 'react-native'
 import { reset } from 'redux-form'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+import { userActions } from '../../../core/user'
 import LoginForm from '../../forms/LoginForm'
+import TitleDisplay from '../../components/titleDisplay'
 import { Layout } from '../../components/flex'
+
 
 class Form extends React.Component {
   onPrev(){
@@ -17,19 +24,41 @@ class Form extends React.Component {
 
   handleSubmit(values, dispatch, props) {
     console.log(values);
-    alert('Email : ' + values.email);
-
-    dispatch(reset('login'));
+    console.log(props)
+    dispatch(userActions.loginUser(values))
+    dispatch(reset('login'))
   }
 
   render () {
-    const { navigator } = this.props
+    const { navigator, error, loading, login } = this.props
+    console.log(this.props)
     return (
       <Layout navigator={navigator}>
-        <LoginForm onSubmit={this.handleSubmit} onPrev={() => this.onPrev()} />
+        {
+          (loading) ? <TitleDisplay title='Loading...' /> :
+          <LoginForm onSubmit={this.handleSubmit} onPrev={() => this.onPrev()} /> 
+        }
+        { (error || login) ? <TitleDisplay title={error} /> : <View /> }
       </Layout>
     )
   }
 }
 
-export default Form;
+//=====================================
+//  CONNECT
+//-------------------------------------
+
+const mapStateToProps = (state, ownProps) => ({
+  loading: state.user.loading,
+  error: state.user.error,
+  login: state.user.login,
+})
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  userActions: bindActionCreators(userActions, dispatch)
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Form);

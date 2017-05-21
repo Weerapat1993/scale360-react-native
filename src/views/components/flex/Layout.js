@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text } from 'react-native'
-import { Grid, Flex, Header, TabBar } from './index'
+import { Grid, Flex, Header, Footer } from './index'
 
 class Layout extends React.Component {
   render () {
@@ -14,7 +14,7 @@ class Layout extends React.Component {
             { this.props.children }
           </Flex>
         </Grid>
-        <TabBar />
+        <Footer />
       </Grid>
     )
   }
