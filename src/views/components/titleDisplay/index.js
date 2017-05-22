@@ -18,20 +18,10 @@ const styles = StyleSheet.create({
   }
 })
 
-class TitleDisplay extends React.Component {
-  constructor() {
-    super()
-
-    this.state = {}
-  }
-  render() {
-    const { title } = this.props
-    return (
-      <View style={styles.container}>
-        <Text style={styles.loading}>{title}</Text>
-      </View>
-    )
-  }
-}
+const TitleDisplay = ({ title }) => (
+  <View style={styles.container}>
+    <Text style={styles.loading}>{title}</Text>
+  </View>
+)
 
 export default TitleDisplay;

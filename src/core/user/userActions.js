@@ -1,13 +1,10 @@
 import { LOGIN_USER } from './userActionTypes'
 
 export const loginUserRequest = (type) => ({ type }) 
-export const loginUserSuccess = (data, type) => ({ data, type })
+export const loginUserSuccess = (payload, type) => ({ payload, type })
 export const loginUserFailure = (error, type) => ({ error, type })  
 
 export const loginUser = (body) => (dispatch, getState) => {
-  // const data = new FormData();
-  // data.append( "json", JSON.stringify( body ) );
-
   const url = 'http://localhost:8000/api/v1/login'
   dispatch(loginUserRequest(LOGIN_USER.REQUEST))
   fetch(url, {

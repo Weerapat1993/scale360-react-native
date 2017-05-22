@@ -9,20 +9,11 @@ export const loginUserRequest = (state, action) => {
 } 
 
 export const loginUserSuccess = (state, action) => {
-  if(action.data.code === 200) {
-    return {
-      data: action.data.data,
-      loading: false,
-      error: action.data.error.message,
-      login: true,
-    }
-  } else {
-    return {
-      data: action.data.data,
-      loading: false,
-      error: action.data.error.message,
-      login: true,
-    }
+  return {
+    data: action.payload.data,
+    loading: false,
+    error: action.payload.error.message,
+    login: true,
   }
 } 
 

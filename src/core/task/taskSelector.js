@@ -1,5 +1,9 @@
+export function getTaskData(state) {
+  return state.task.data
+}
+
 export function getTaskFilter(state, props) {
-  const task = state.task.data
+  const task = getTaskData(state)
   const { filter } = props.location.query
 
   switch (filter) {

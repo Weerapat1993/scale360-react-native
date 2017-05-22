@@ -20,16 +20,16 @@ export const taskReducer = (state = initialState, action) => {
       return loadingData(state, action)
     // FETCH_TASK_SUCCESS: ================================
     case TASK.FETCH.SUCCESS:
-      return fetchData(state,action)
+      return fetchData(state, action)
     // CREATE_TASK_SUCCESS: ================================
     case TASK.CREATE.SUCCESS:
-      return createData(state,action)
+      return createData(state, action)
     // UPDATE_TASK_SUCCESS: ================================
     case TASK.UPDATE.SUCCESS:
-      return updateData(state,action)
+      return updateData(state, action)
     // CREATE_TASK_SUCCESS: ================================
     case TASK.DELETE.SUCCESS:
-      return deleteData(state,action)
+      return deleteData(state, action)
     // DEFAULT: ================================
     default:
       return state
