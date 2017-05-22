@@ -2,6 +2,7 @@
 import { TASK } from '../taskActionTypes';
 import { taskReducer } from '../taskReducer'
 import { loadingData, fetchData, createData, updateData, deleteData } from '../../../utils'
+import { fetchTaskSuccess } from '../taskFunction'
 
 const initialState = {
   loading: false,
@@ -37,7 +38,7 @@ const actionTypeName = [
 const expected_array = [
   loadingData,
   loadingData,
-  fetchData,
+  fetchTaskSuccess,
   createData,
   updateData,
   updateData,

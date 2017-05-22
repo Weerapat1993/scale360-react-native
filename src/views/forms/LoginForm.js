@@ -5,11 +5,6 @@ import { Flex, Grid } from '../components/flex'
 import { loginValidation } from '../../core/form/loginValidation'
 import { FormElements } from '../components/form-elements'
 
-const data = {  // used to populate "account" reducer when "Load" is clicked
-  email: 'Admin@example.com',
-  password: '123456',
-}
-
 class LoginForm extends Component {
   onPrev(){
     const Actions = this.props.routes;
