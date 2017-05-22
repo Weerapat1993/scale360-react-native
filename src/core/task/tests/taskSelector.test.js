@@ -1,4 +1,4 @@
-import { getTaskFilter } from '../taskSelector'
+import { getTaskFilter, getTaskData, getTaskQuery } from '../taskSelector'
 
 const initialState = {
   task: {
@@ -41,8 +41,8 @@ describe('Task Selector', () => {
 
 // Function Filter Data
 function getFilterData(state, props) {
-  const task = state.task.data
-  const { filter } = props.location.query
+  const task = getTaskData(state)
+  const filter = getTaskQuery(props)
   switch (filter) {
     case 'active':
       return task.filter(item => !item.completed);

@@ -1,8 +1,7 @@
 // import { TASK } from '../../constants';
 import { TASK } from '../taskActionTypes';
 import { taskReducer } from '../taskReducer'
-import { loadingData, fetchData, createData, updateData, deleteData } from '../../../utils'
-import { fetchTaskSuccess } from '../taskFunction'
+import { taskRequest, taskFailure, fetchTaskSuccess, createTaskSuccess, updateTaskSuccess, deleteTaskSuccess } from '../taskFunction'
 
 const initialState = {
   loading: false,
@@ -16,8 +15,6 @@ const initialState = {
 }
 
 const payload = {
-  request: true,
-  failure: false,
   fetch: initialState,
   create: { id: 2, title: 'Task 102', completed: false },
   completed: { key: 1, completed: true },
@@ -26,8 +23,6 @@ const payload = {
 }
 
 const actionTypeName = [
-  TASK.FETCH.REQUEST,
-  TASK.FETCH.FAILURE,
   TASK.FETCH.SUCCESS,
   TASK.CREATE.SUCCESS,
   TASK.UPDATE.SUCCESS,
@@ -36,16 +31,40 @@ const actionTypeName = [
 ]
 
 const expected_array = [
-  loadingData,
-  loadingData,
-  fetchTaskSuccess,
-  createData,
-  updateData,
-  updateData,
-  deleteData,
+  fetchTaskSuccess, 
+  createTaskSuccess, 
+  updateTaskSuccess, 
+  updateTaskSuccess, 
+  deleteTaskSuccess,
 ]
 
-const type = ['request','failure','fetch','create','completed','update','delete']
+const actionTypeName2 = [
+  TASK.FETCH.REQUEST,
+  TASK.CREATE.REQUEST,
+  TASK.UPDATE.REQUEST,
+  TASK.UPDATE.REQUEST,
+  TASK.DELETE.REQUEST,
+  TASK.FETCH.FAILURE,
+  TASK.CREATE.FAILURE,
+  TASK.UPDATE.FAILURE,
+  TASK.UPDATE.FAILURE,
+  TASK.DELETE.FAILURE,
+]
+
+const expected_array2 = [
+  taskRequest,
+  taskRequest,
+  taskRequest,
+  taskRequest,
+  taskRequest,
+  taskFailure,
+  taskFailure,
+  taskFailure,
+  taskFailure,
+  taskFailure,
+]
+
+const type = ['fetch','create','completed','update','delete']
 
 describe('Task Reducers', () => {
   for (let i = 0; i < actionTypeName.length; i++) {
@@ -56,6 +75,17 @@ describe('Task Reducers', () => {
       }
       const recieved = taskReducer(initialState, action)
       const expected = expected_array[i](initialState, action)
+      expect(recieved).toEqual(expected)
+    });
+  }
+
+  for (let i = 0; i < actionTypeName2.length; i++) {
+    it('should Task Reducer : '+actionTypeName2[i], () => {
+      const action = {
+        type: actionTypeName2[i],
+      }
+      const recieved = taskReducer(initialState, action)
+      const expected = expected_array2[i](initialState, action)
       expect(recieved).toEqual(expected)
     });
   }

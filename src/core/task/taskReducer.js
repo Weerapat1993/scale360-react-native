@@ -1,9 +1,8 @@
-import { loadingData, fetchData, createData, updateData, deleteData } from '../../utils'
 // import { TASK } from '../constants'
 import { TASK } from './taskActionTypes'
-import { fetchTaskSuccess, createTaskSuccess, updateTaskSuccess, deleteTaskSuccess } from './taskFunction'
+import { taskRequest, taskFailure, fetchTaskSuccess, createTaskSuccess, updateTaskSuccess, deleteTaskSuccess } from './taskFunction'
 
-const initialState = {
+export const initialState = {
   data: [],
   loading: true
 };
@@ -14,11 +13,12 @@ export const taskReducer = (state = initialState, action) => {
     case TASK.CREATE.REQUEST:
     case TASK.UPDATE.REQUEST:
     case TASK.DELETE.REQUEST:
+      return taskRequest(state, action)
     case TASK.FETCH.FAILURE:
     case TASK.CREATE.FAILURE:
     case TASK.UPDATE.FAILURE:
     case TASK.DELETE.FAILURE:
-      return loadingData(state, action)
+      return taskFailure(state, action)
     // FETCH_TASK_SUCCESS: ================================
     case TASK.FETCH.SUCCESS:
       return fetchTaskSuccess(state, action)
