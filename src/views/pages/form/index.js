@@ -24,9 +24,8 @@ class Form extends React.Component {
 
   handleSubmit(values, dispatch, props) {
     console.log(values);
-    console.log(props)
     dispatch(userActions.loginUser(values))
-    dispatch(reset('login'))
+    // dispatch(reset('login'))
   }
 
   render () {
