@@ -1,7 +1,7 @@
-import { get${name_pascal}Filter } from '../${name}Selector'
+import { get${name_pascal}Filter, get${name_pascal}Data, get${name_pascal}Query } from '../${name}Selector'
 
 const initialState = {
-  task: {
+  ${name}: {
     loading: true,
     data: [
       {
@@ -41,8 +41,8 @@ describe('${name_pascal} Selector', () => {
 
 // Function Filter Data
 function getFilterData(state, props) {
-  const ${name} = state.${name}.data
-  const { filter } = props.location.query
+  const ${name} = get${name_pascal}Data(state)
+  const filter = get${name_pascal}Query(props)
   switch (filter) {
     case 'active':
       return ${name}.filter(item => !item.completed);

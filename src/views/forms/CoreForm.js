@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, TextInput, View, Text } from 'react-native'
 import { Button } from 'react-native-elements'
 import { Field, reduxForm } from 'redux-form'
-import { taskValidation } from '../../core/form/taskValidation'
-import { btnSuccess } from '../styles/globalStyle'
+import { coreValidation } from '../../core/form/coreValidation'
 
 const styles = StyleSheet.create({
   inputContainer: {
@@ -35,7 +34,7 @@ const renderField = ({ input, placeholder, type, meta: { touched, error, warning
   );
 };
 
-class TaskForm extends Component {
+class CoreForm extends Component {
   onPrev(){
     const Actions = this.props.routes;
     if (this.props.onPrev){
@@ -57,7 +56,7 @@ class TaskForm extends Component {
           backgroundColor={`#3f51b5`}
           buttonStyle={{ margin: 0, padding: 0 , height: 40 }}
         />
-        <Field name='title' component={renderField} placeholder='Add Task' />
+        <Field name='title' component={renderField} placeholder='Add Core' />
         <Button
           onPress={handleSubmit}
           title="Add"
@@ -70,9 +69,9 @@ class TaskForm extends Component {
 }
 
 // Decorate the form component
-TaskForm = reduxForm({
-  form: 'task', // a unique name for this form
-  validate: taskValidation,
-})(TaskForm);
+CoreForm = reduxForm({
+  form: 'core', // a unique name for this form
+  validate: coreValidation,
+})(CoreForm);
 
-export default TaskForm;
+export default CoreForm;

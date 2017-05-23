@@ -1,9 +1,9 @@
 // import { TASK } from '../../constants';
 import { TASK } from '../taskActionTypes';
-import { taskReducer } from '../taskReducer'
+import { initialState, taskReducer } from '../taskReducer'
 import { taskRequest, taskFailure, fetchTaskSuccess, createTaskSuccess, updateTaskSuccess, deleteTaskSuccess } from '../taskFunction'
 
-const initialState = {
+const defaultState = {
   loading: false,
   data: [
     {
@@ -67,14 +67,20 @@ const expected_array2 = [
 const type = ['fetch','create','completed','update','delete']
 
 describe('Task Reducers', () => {
+  it('should Task Reducer : initialState', () => {
+    const recieved = taskReducer(undefined, undefined)
+    const expected = initialState
+    expect(recieved).toEqual(expected)
+  });
+
   for (let i = 0; i < actionTypeName.length; i++) {
     it('should Task Reducer : '+actionTypeName[i], () => {
       const action = {
         type: actionTypeName[i],
         payload: payload[type[i]]
       }
-      const recieved = taskReducer(initialState, action)
-      const expected = expected_array[i](initialState, action)
+      const recieved = taskReducer(defaultState, action)
+      const expected = expected_array[i](defaultState, action)
       expect(recieved).toEqual(expected)
     });
   }
@@ -84,9 +90,17 @@ describe('Task Reducers', () => {
       const action = {
         type: actionTypeName2[i],
       }
-      const recieved = taskReducer(initialState, action)
-      const expected = expected_array2[i](initialState, action)
+      const recieved = taskReducer(defaultState, action)
+      const expected = expected_array2[i](defaultState, action)
       expect(recieved).toEqual(expected)
     });
   }
+  it('should Task Reducer : ETC', () => {
+    const action = {
+      type: 'ETC',
+    }
+    const recieved = taskReducer(defaultState, action)
+    const expected = defaultState
+    expect(recieved).toEqual(expected)
+  });
 });

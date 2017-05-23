@@ -11,6 +11,7 @@ export const APP_NAME = 'Scale360 React Starter Kit';
 export const API_BASE_URL = 'http://localhost:3000/'
 
 export const API = {
+  CORE: 'https://jsonplaceholder.typicode.com/todos?userId=1',
   TASK: 'https://jsonplaceholder.typicode.com/todos?userId=1',
 }
 

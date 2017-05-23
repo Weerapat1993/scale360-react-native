@@ -28,12 +28,12 @@ then
   done
 
   # Files Core #
-  files=( Actions ActionTypes Reducer Selector )
+  files=( Actions ActionTypes Reducer Selector Function )
   for file in "${files[@]}"
   do
     if ! [ -e "./src/core/${CORE}/${CORE}${file}.js" ]
     then
-      sh ./app/Console/build.sh ./app/Console/templates/core/${file}.js ./src/core/${CORE}/${CORE}${file}.js
+      sh ./app/Console/build.sh ./app/Console/templates/core/core${file}.js ./src/core/${CORE}/${CORE}${file}.js
     fi
   done
 
@@ -49,10 +49,11 @@ then
   do
     if ! [ -e "./src/core/${CORE}/tests/${CORE}${test}.test.js" ]
     then
-      sh ./app/Console/build.sh ./app/Console/templates/core/tests/${test}.js ./src/core/${CORE}/tests/${CORE}${test}.test.js
+      sh ./app/Console/build.sh ./app/Console/templates/core/tests/core${test}.js ./src/core/${CORE}/tests/${CORE}${test}.test.js
     fi
   done
 
+  # Mock Data Tests #
   if ! [ -e "./src/core/${CORE}/tests/data.js" ]
   then
     sh ./app/Console/build.sh ./app/Console/templates/core/tests/data.js ./src/core/${CORE}/tests/data.js

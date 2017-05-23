@@ -27,7 +27,8 @@
     "test": "node node_modules/jest/bin/jest.js --watch",
     "make": "sh ./command.sh",
     "eslint": "sh ./eslint.sh",
-    "redux": "sh ./redux.sh"
+    "redux": "sh ./redux.sh",
+    "core": "sh ./core.sh"
   },
   "jest": {
     "preset": "jest-expo"
@@ -42,6 +43,7 @@
     "react-native-redux-router": "^1.0.7",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
+    "redux-api-middleware": "^1.0.3",
     "redux-form": "^6.6.3",
     "redux-mock-store": "^1.2.3",
     "redux-thunk": "^2.2.0"

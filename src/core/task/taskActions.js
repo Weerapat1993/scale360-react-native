@@ -5,7 +5,7 @@ import { TASK } from './taskActionTypes'
 // FETCH_TASK
 export const fetchTask = () => fetchActions({
   type: TASK.FETCH,
-  API: API.TASK
+  API: 'https://jsonplaceholder.typicode.com/todos?userId=1'
 })
 
 // CREATE_TASK

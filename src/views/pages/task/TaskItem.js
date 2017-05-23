@@ -84,7 +84,7 @@ class TaskItem extends React.Component {
     return (
       <Flex>
         <FormInput
-          placeholder="Edit Task"
+          placeholder='Edit Task'
           onChangeText={title => this.setState({title}) }
           value={this.state.title}
         />
@@ -98,14 +98,14 @@ class TaskItem extends React.Component {
         <Button
           onPress={() => this.editTitle()}
           raised
-          title="Edit"
+          title='Edit'
           backgroundColor={btnWarning}
           containerStyle={{ margin: 0 , height: 30 }}
         />
         <Button
           onPress={() => this.deleteTask(task.id)}
           raised
-          title="Delete"
+          title='Delete'
           backgroundColor={btnDanger}
           containerStyle={{ margin: 0, height: 30 }}
         />
@@ -118,7 +118,7 @@ class TaskItem extends React.Component {
       <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
         <Button
           onPress={() => this.updateTask()}
-          title="Update"
+          title='Update'
           raised
           backgroundColor={btnSuccess}
           buttonStyle={{ margin: 0 , height: 30 }}

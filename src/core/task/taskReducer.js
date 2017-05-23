@@ -8,6 +8,7 @@ export const initialState = {
 };
 
 export const taskReducer = (state = initialState, action) => {
+  if(action === undefined) return state
   switch (action.type) {
     case TASK.FETCH.REQUEST:
     case TASK.CREATE.REQUEST:

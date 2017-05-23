@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 // import { composeWithDevTools } from 'redux-devtools-extension'
-// import { apiMiddleware } from 'redux-api-middleware'
+import { apiMiddleware } from 'redux-api-middleware'
 import createLogger from 'redux-logger'
 import rootReducers from './rootReducers'
 

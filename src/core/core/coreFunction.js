@@ -1,55 +1,55 @@
 /**
- * LOADING TASK
+ * LOADING CORE
  * @param {*} state
  * @param {boolean} bool
  * @return {*}
  */
-export const loadingTask = (state, bool) => ({
+export const loadingCore = (state, bool) => ({
   ...state,
   loading: bool
 })
 
 /**
- * TASK REQUEST
+ * CORE REQUEST
  * @param {*} state
  * @param {*} action
  */
-export const taskRequest = (state, action) => (loadingTask(state, true))
+export const coreRequest = (state, action) => (loadingCore(state, true))
 
 /**
- * TASK FAILURE
+ * CORE FAILURE
  * @param {*} state
  * @param {*} action
  */
-export const taskFailure = (state, action) => (loadingTask(state, false))
+export const coreFailure = (state, action) => (loadingCore(state, false))
 
 
 //=====================================
-//  FETCH_TASK
+//  FETCH_CORE
 //-------------------------------------
 
 /**
- * FETCH API TASK SUCCESS
+ * FETCH API CORE SUCCESS
  * @param {*} state
  * @param {*} action
  * 
  */
-export const fetchTaskSuccess = (state, action) => ({
+export const fetchCoreSuccess = (state, action) => ({
   ...state,
   loading: false,
   data: action.payload
 })
 
 //=====================================
-//  CREATE_TASK
+//  CREATE_CORE
 //-------------------------------------
 
 /**
- * CREATE NEW TASK SUCCESS
+ * CREATE NEW CORE SUCCESS
  * @param {*} state
  * @param {*} action
  */
-export const createTaskSuccess = (state, action) => ({
+export const createCoreSuccess = (state, action) => ({
   loading: false,
   data: [
     ...state.data,
@@ -58,15 +58,15 @@ export const createTaskSuccess = (state, action) => ({
 })
 
 //=====================================
-//  UPDATE_TASK
+//  UPDATE_CORE
 //-------------------------------------
 
 /**
- * UPDATE TASK SUCCESS (item.key)
+ * UPDATE CORE SUCCESS (item.key)
  * @param {*} state
  * @param {*} action
  */
-export const updateTaskSuccess = (state,action) => {
+export const updateCoreSuccess = (state,action) => {
   let news = state.data.filter((item) => action.payload.id === item.id)
   let newData = Object.assign({}, news[0], action.payload)
   let newState = state.data
@@ -82,15 +82,15 @@ export const updateTaskSuccess = (state,action) => {
 }
 
 //=====================================
-//  DELETE_TASK
+//  DELETE_CORE
 //-------------------------------------
 
 /**
- * DELETE TASK SUCCESS (item.key)
+ * DELETE CORE SUCCESS (item.key)
  * @param {*} state
  * @param {*} action
  */
-export const deleteTaskSuccess = (state,action) => ({
+export const deleteCoreSuccess = (state,action) => ({
   loading: false,
   data: state.data.filter((item) => action.payload !== item.id)
 })

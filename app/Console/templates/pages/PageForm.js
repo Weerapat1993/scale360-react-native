@@ -1,58 +1,77 @@
-import React from 'react'
-import { View, TextInput, Button } from 'react-native'
-import { styles } from './styles'
-import { btnSuccess } from '../../styles/variables'
+import React, { Component } from 'react'
+import { StyleSheet, TextInput, View, Text } from 'react-native'
+import { Button } from 'react-native-elements'
+import { Field, reduxForm } from 'redux-form'
+import { ${name}Validation } from '../../../core/form/${name}Validation'
 
-class ${name_pascal}Form extends React.Component {
-  constructor() {
-    super()
+const styles = StyleSheet.create({
+  inputContainer: {
+    padding: 8,
+    backgroundColor: '#3f51b5',
+    flexDirection: 'row',
+    alignItems: 'stretch'
+  },
+  input: {
+    height: 30,
+    flex: 1,
+    paddingHorizontal: 8,
+    fontSize: 15,
+    backgroundColor: '#fff',
+    borderRadius: 2,
+  },
+})
 
-    this.state = {
-      title: ''
+const renderField = ({ input, placeholder, type, meta: { touched, error, warning } }) => {
+  return (
+    <View style={{ flex: 1 }}>
+      <TextInput
+        {...input} 
+        placeholder={placeholder}
+        style={styles.input} 
+      />
+      {touched && ((error && <Text style={{color: 'red'}}>{error}</Text>) || (warning && <Text style={{color: 'red'}}>{warning}</Text>))}
+    </View>
+  );
+};
+
+class ${name_pascal}Form extends Component {
+  onPrev(){
+    const Actions = this.props.routes;
+    if (this.props.onPrev){
+        this.props.onPrev();
+        return;
+    }
+    if (this.props.navigator && this.props.navigator.getCurrentRoutes().length > 1){
+        Actions.pop();
     }
   }
 
-  clearInput() {
-    this.setState({title: ''});
-  }
-
-  handleKeyUp(e) {
-    if (e.keyCode === 27) {
-      this.clearInput();
-    }
-  }
-
-  handleSubmit() {
-    const title = this.state.title.trim();
-    if (title.length) this.props.add${name_pascal}(title);
-    this.clearInput();
-  }
-
-  render () {
-    const { onPrev } = this.props
+  render() {
+    const { handleSubmit, onPrev } = this.props
     return (
       <View style={styles.inputContainer}>
-        <View style={{ width: 50 }}>
-          <Button onPress={onPrev} title='<' color={btnSuccess} />
-        </View>
-        <View style={{ flex: 1 }}>
-          <TextInput
-            style={styles.input}
-            placeholder='Add ${name_pascal}'
-            onChangeText={(title) => this.setState({title})}
-            value={this.state.title}
-          />
-        </View>
-        <View style={{ width: 75 }}>
-          <Button
-            onPress={() => this.handleSubmit()}
-            title='Add'
-            color={btnSuccess}
-          />
-        </View>
+        <Button 
+          onPress={onPrev} 
+          icon={{ name: 'arrow-left', type: 'font-awesome' }} 
+          backgroundColor={'#3f51b5'}
+          buttonStyle={{ margin: 0, padding: 0 , height: 40 }}
+        />
+        <Field name='title' component={renderField} placeholder='Add ${name_pascal}' />
+        <Button
+          onPress={handleSubmit}
+          title='Add'
+          backgroundColor={'#3f51b5'}
+          buttonStyle={{ margin: 0, padding: 0 , height: 40 }}
+        />
       </View>
-    )
+    );
   }
 }
+
+// Decorate the form component
+${name_pascal}Form = reduxForm({
+  form: '${name}', // a unique name for this form
+  validate: ${name}Validation,
+})(${name_pascal}Form);
 
 export default ${name_pascal}Form;

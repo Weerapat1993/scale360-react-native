@@ -45,6 +45,13 @@ then
     fi
   done
 
+  # Files Page Start #
+  if ! [ -e "./src/views/pages/${CORE}/${name_pascal}.js" ]
+  then
+    CHECK=1;
+    sh ./app/Console/build.sh ./app/Console/templates/pages/Page.js ./src/views/pages/${CORE}/${name_pascal}.js
+  fi
+
   # Files Pages #
   files=( Form Item )
   for file in "${files[@]}"
@@ -63,6 +70,6 @@ then
     echo "\n Plaese setting config\n"
     echo " - ./src/views/routes.js \n"
     echo "\t ${red}import${reset} ${name_pascal} ${red}from${reset} './pages/${CORE}' \n"
-    echo "\t <${red}Route${green} name${reset}='/${CORE}'${green} component${reset}={${name_pascal}}${green} title${reset}='${name_pascal}'${green} schema${reset}='default' /> \n"
+    echo "\t <${red}Route${green} name${reset}='${CORE}'${green} component${reset}={${name_pascal}}${green} title${reset}='${name_pascal}'${green} schema${reset}='default' /> \n"
   fi
 fi
