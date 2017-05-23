@@ -5,7 +5,7 @@ import { ${name_upper} } from './${name}ActionTypes'
 // FETCH_${name_upper}
 export const fetch${name_pascal} = () => fetchActions({
   type: ${name_upper}.FETCH,
-  API: API.${name_upper}
+  API: 'https://jsonplaceholder.typicode.com/todos?userId=1'
 })
 
 // CREATE_${name_upper}
