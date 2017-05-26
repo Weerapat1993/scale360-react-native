@@ -49,7 +49,7 @@ then
   if ! [ -e "./src/views/pages/${CORE}/${name_pascal}.js" ]
   then
     CHECK=1;
-    sh ./app/Console/build.sh ./app/Console/templates/pages/Page.js ./src/views/pages/${CORE}/${name_pascal}.js
+    sh ./app/Console/build.sh ./app/Console/templates/pages/Core.js ./src/views/pages/${CORE}/${name_pascal}.js
   fi
 
   # Files Pages #
@@ -59,7 +59,7 @@ then
     if ! [ -e "./src/views/pages/${CORE}/${CORE}${file}.js" ]
     then
       CHECK=1;
-      sh ./app/Console/build.sh ./app/Console/templates/pages/Page${file}.js ./src/views/pages/${CORE}/${name_pascal}${file}.js
+      sh ./app/Console/build.sh ./app/Console/templates/pages/Core${file}.js ./src/views/pages/${CORE}/${name_pascal}${file}.js
     fi
   done
 

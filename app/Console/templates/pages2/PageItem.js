@@ -33,13 +33,13 @@ const styles = StyleSheet.create({
   }
 });
 
-class CoreItem extends React.Component {
+class ${name_pascal}Item extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
       editing: false,
-      title: props.core.title,
+      title: props.${name}.title,
     }
   }
 
@@ -51,40 +51,40 @@ class CoreItem extends React.Component {
     this.setState({editing: false});
   }
 
-  updateCore() {
+  update${name_pascal}() {
     if (this.state.editing) {
-      const { core } = this.props;
+      const { ${name} } = this.props;
       const title = this.state.title
 
-      if (title.length && title !== core.title) {
-        this.props.updateCore({title , id: core.id });
+      if (title.length && title !== ${name}.title) {
+        this.props.update${name_pascal}({title , id: ${name}.id });
       }
       this.stopEditing();
     }
   }
 
-  toggleStatus(core) {
-    this.props.updateCore({ id: core.id, completed: !core.completed });
+  toggleStatus(${name}) {
+    this.props.update${name_pascal}({ id: ${name}.id, completed: !${name}.completed });
   }
 
-  deleteCore(id) {
-    this.props.deleteCore(id);
+  delete${name_pascal}(id) {
+    this.props.delete${name_pascal}(id);
   }
 
-  renderTitle(core) {
+  renderTitle(${name}) {
     let styleTitle;
-    if(!core.completed)
+    if(!${name}.completed)
       styleTitle = styles.textCompleted
     else
       styleTitle = styles.text
-    return (<Text style={styleTitle}>{core.title}</Text>)
+    return (<Text style={styleTitle}>{${name}.title}</Text>)
   }
 
-  renderTitleInput(core) {
+  renderTitleInput(${name}) {
     return (
       <Flex>
         <FormInput
-          placeholder='Edit Core'
+          placeholder='Edit ${name_pascal}'
           onChangeText={title => this.setState({title}) }
           value={this.state.title}
         />
@@ -92,7 +92,7 @@ class CoreItem extends React.Component {
     )
   }
 
-  renderButton(core) {
+  renderButton(${name}) {
     return (
       <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
         <Button
@@ -103,7 +103,7 @@ class CoreItem extends React.Component {
           containerStyle={{ margin: 0 , height: 30 }}
         />
         <Button
-          onPress={() => this.deleteCore(core.id)}
+          onPress={() => this.delete${name_pascal}(${name}.id)}
           raised
           title='Delete'
           backgroundColor={btnDanger}
@@ -113,11 +113,11 @@ class CoreItem extends React.Component {
     )
   }
 
-  renderButtonEdit(core) {
+  renderButtonEdit(${name}) {
     return (
       <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
         <Button
-          onPress={() => this.updateCore()}
+          onPress={() => this.update${name_pascal}()}
           title='Update'
           raised
           backgroundColor={btnSuccess}
@@ -128,30 +128,30 @@ class CoreItem extends React.Component {
   }
 
   render() {
-    const { core } = this.props
+    const { ${name} } = this.props
     return (
       <TouchableHighlight
         accessible={true}
-        onPress={() => this.toggleStatus(core)}
+        onPress={() => this.toggleStatus(${name})}
         underlayColor='rgba(14, 43, 77, 0.03)' >
         <View style={styles.container}>
           <View style={{ width: 50 }} >
             <CheckBox
-              checked={core.completed}
-              onPress={() => this.toggleStatus(core)}
+              checked={${name}.completed}
+              onPress={() => this.toggleStatus(${name})}
               checkedIcon='check'
               uncheckedIcon='close'
               containerStyle={{ padding: 0, backgroundColor: 'white', borderColor: 'white' }}
             />
           </View>
           <Flex>
-            { this.state.editing ? this.renderTitleInput(core) : this.renderTitle(core) }
+            { this.state.editing ? this.renderTitleInput(${name}) : this.renderTitle(${name}) }
           </Flex>
-          { this.state.editing ? this.renderButtonEdit(core) : this.renderButton(core) }
+          { this.state.editing ? this.renderButtonEdit(${name}) : this.renderButton(${name}) }
         </View>
       </TouchableHighlight>
     )
   }
 }
 
-export default CoreItem;
+export default ${name_pascal}Item;

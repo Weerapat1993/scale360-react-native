@@ -3,20 +3,20 @@ import { View, Button, ListView } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { reset } from 'redux-form'
-import { coreActions } from '../../../core/core';
+import { ${name}Actions } from '../../../core/${name}'
 import { styles } from './styles'
 
 import TitleDisplay from '../../components/titleDisplay'
-import CoreForm from './CoreForm'
-import CoreItem from './CoreItem'
+import ${name_pascal}Form from './${name_pascal}Form'
+import ${name_pascal}Item from './${name_pascal}Item'
 import { Footer } from '../../components/flex'
 
-class Core extends React.Component {
+class ${name_pascal} extends React.Component {
   componentDidMount() {
     setTimeout(() => {
-      const { cores, coreActions } = this.props
-      if(!cores.length){
-        coreActions.fetchCore()
+      const { ${name}s, ${name}Actions } = this.props
+      if(!${name}s.length){
+        ${name}Actions.fetch${name_pascal}()
       }
     }, 1000);
   }
@@ -32,31 +32,31 @@ class Core extends React.Component {
     }
   }
 
-  createCore(values, dispatch, props) {
+  create${name_pascal}(values, dispatch, props) {
     const data = {
       id: new Date().getTime(),
       title: values.title,
       completed: false
     }
-    dispatch(coreActions.createCore(data));
-    dispatch(reset('core'));
+    dispatch(${name}Actions.create${name_pascal}(data));
+    dispatch(reset('${name}'));
   }
 
-  updateCore(data) {
-    this.props.coreActions.updateCore(data)
+  update${name_pascal}(data) {
+    this.props.${name}Actions.update${name_pascal}(data)
   }
 
-  deleteCore(id) {
-    this.props.coreActions.deleteCore(id)
+  delete${name_pascal}(id) {
+    this.props.${name}Actions.delete${name_pascal}(id)
   }
 
   renderRow(rowData, sectionID, rowID) {
     return (
-      <CoreItem
+      <${name_pascal}Item
         key={rowID}
-        core={rowData}
-        updateCore={(data) => this.updateCore(data)}
-        deleteCore={(id) => this.deleteCore(id)} />
+        ${name}={rowData}
+        update${name_pascal}={(data) => this.update${name_pascal}(data)}
+        delete${name_pascal}={(id) => this.delete${name_pascal}(id)} />
     )
   }
 
@@ -71,11 +71,11 @@ class Core extends React.Component {
   }
 
   render() {
-    const { cores, loading } = this.props
+    const { ${name}s, loading } = this.props
     return (
       <View style={styles.container}>
-        <CoreForm onSubmit={this.createCore} onPrev={() => this.onPrev()} />
-        { this.listView(cores, loading) }
+        <${name_pascal}Form onSubmit={this.create${name_pascal}} onPrev={() => this.onPrev()} />
+        { this.listView(${name}s, loading) }
         <Footer />
       </View>
     )
@@ -87,15 +87,15 @@ class Core extends React.Component {
 //-------------------------------------
 
 const mapStateToProps = (state, ownProps) => ({
-  cores: state.core.data,
-  loading: state.core.loading
+  ${name}s: state.${name}.data,
+  loading: state.${name}.loading
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  coreActions: bindActionCreators(coreActions, dispatch)
+  ${name}Actions: bindActionCreators(${name}Actions, dispatch)
 })
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Core);
+)(${name_pascal});

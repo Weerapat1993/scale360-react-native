@@ -25,10 +25,10 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
-    "make": "sh ./command.sh",
-    "eslint": "sh ./eslint.sh",
-    "redux": "sh ./redux.sh",
-    "core": "sh ./core.sh"
+    "make": "sh ./shell_script/make.sh",
+    "eslint": "sh ./shell_script/eslint.sh",
+    "redux": "sh ./shell_script/redux.sh",
+    "core": "sh ./shell_script/core.sh"
   },
   "jest": {
     "preset": "jest-expo"

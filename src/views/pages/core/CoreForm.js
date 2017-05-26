@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, TextInput, View, Text } from 'react-native'
 import { Button } from 'react-native-elements'
 import { Field, reduxForm } from 'redux-form'
-import { coreValidation } from '../../core/form/coreValidation'
+import { coreValidation } from '../../../core/form/coreValidation'
 
 const styles = StyleSheet.create({
   inputContainer: {
@@ -53,14 +53,14 @@ class CoreForm extends Component {
         <Button 
           onPress={onPrev} 
           icon={{ name: 'arrow-left', type: 'font-awesome' }} 
-          backgroundColor={`#3f51b5`}
+          backgroundColor={'#3f51b5'}
           buttonStyle={{ margin: 0, padding: 0 , height: 40 }}
         />
         <Field name='title' component={renderField} placeholder='Add Core' />
         <Button
           onPress={handleSubmit}
-          title="Add"
-          backgroundColor={`#3f51b5`}
+          title='Add'
+          backgroundColor={'#3f51b5'}
           buttonStyle={{ margin: 0, padding: 0 , height: 40 }}
         />
       </View>

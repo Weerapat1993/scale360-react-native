@@ -3,7 +3,7 @@ import { View, Button, ListView } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { reset } from 'redux-form'
-import { taskActions } from '../../../core/task';
+import { taskActions } from '../../../core/task'
 import { styles } from './styles'
 
 import TitleDisplay from '../../components/titleDisplay'
