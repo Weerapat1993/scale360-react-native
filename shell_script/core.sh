@@ -18,6 +18,6 @@ else
   if [ -e "./app/Console/core/${command}.sh" ]; then
     sh ./app/Console/core/${command}.sh
   else
-    echo "\n${red} error: command \`make:${command}\` is not found.${reset}\n"
+    echo "\n${red} error: command \`npm run core ${command}\` is not found.${reset}\n"
   fi
 fi

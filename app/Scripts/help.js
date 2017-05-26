@@ -9,3 +9,6 @@ console.log(chalk.green('npm run make core <name> \t- Create File Core Reducer &
 console.log(chalk.green('npm run make container <name> \t- Create File Container'));
 console.log(chalk.green('npm run make component <name> \t- Create File Component'));
 console.log(chalk.green('npm run make page <name> \t- Create File Route Page\n'));
+console.log(chalk.green('npm run make form <name> \t- Create File Form\n'));
+console.log(chalk.green('npm run core <command_name> \t- Generate File Core Command in [core] template\n'));
+

@@ -2,7 +2,7 @@
 
 #The following line will print no of argument provided to script
 #echo $#
-USAGE="npm run make:$1 <name>"
+USAGE="npm run make $1 <name>"
 red=`tput setaf 1`;
 green=`tput setaf 2`;
 reset=`tput sgr0`;
@@ -19,6 +19,6 @@ else
   if [ -e "./app/Console/commands/${command}.sh" ]; then
     sh ./app/Console/commands/${command}.sh $command_name
   else
-    echo "\n${red} error: command \`make:${command}\` is not found.${reset}\n"
+    echo "\n${red} error: command \`npm run make ${command}\` is not found.${reset}\n"
   fi
 fi
