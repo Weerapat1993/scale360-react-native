@@ -1,14 +1,21 @@
+import nock from 'nock'
+import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
+
 import { initalState } from '../userReducer'
-import { mockStore } from '../../store'
 import { LOGIN_USER } from '../userActionTypes'
 import { loginUser, loginUserRequest, loginUserSuccess, loginUserFailure } from '../userActions'
 
-var data = {
+const middlewares = [ thunk ]
+const mockStore = configureMockStore(middlewares)
+
+
+const data = {
   email: 'admin@example.com',
   password: 'qwerty',
 }
 
-var payload = {
+const payload = {
   data: {
     id: 1,
     name: 'Admin Example',
@@ -20,14 +27,14 @@ var payload = {
   error: null
 }
 
-var error = {
+const error = {
   message: 'User is Not Found'
 }
 
-var ACTION = {
+const ACTION = {
   REQUEST: { type: LOGIN_USER.REQUEST },
   SUCCESS: { type: LOGIN_USER.SUCCESS, payload },
-  FAILURE: { type: LOGIN_USER.FAILURE, error },
+  FAILURE: { type: LOGIN_USER.FAILURE, error: Error(error.message) },
 }
 
 describe('User Actions', () => {
@@ -49,29 +56,64 @@ describe('User Actions', () => {
     expect(received).toEqual(expected)
   })
 
-  it('should User Action : Login User [SUCCESS]', () => {
-    const expected = [
-      ACTION.REQUEST,
-      ACTION.SUCCESS,
-    ]
-    const store = mockStore({ user: initalState })
-    store.dispatch(loginUser(data))
-    store.dispatch(loginUserSuccess(payload, LOGIN_USER.SUCCESS))
-    let received = store.getActions()
-    expect(received).toEqual(expected)
-  })
+  // it('should User Action : Login User [SUCCESS]', () => {
+  //   const store = mockStore({ user: initalState  })
+  //   store.dispatch(loginUser(data))
+  //   const recieved = store.getActions()
+  //   const expected = [
+  //     ACTION.REQUEST,
+  //     ACTION.SUCCESS,
+  //   ]
+  //   expect(expected).toEqual(recieved);
+  // })
 
-  it('should User Action : Login User [FAILURE]', () => {
-    const expected = [
-      ACTION.REQUEST,
-      ACTION.FAILURE,
-    ]
-    const store = mockStore({ user: initalState })
-    store.dispatch(loginUser(data))
-    store.dispatch(loginUserFailure(error, LOGIN_USER.FAILURE))
-    let received = store.getActions()
-    expect(received).toEqual(expected)
-  })
+  // it('should User Action : Login User [FAILURE]', () => {
+  //   const expected = [
+  //     ACTION.REQUEST,
+  //     ACTION.FAILURE,
+  //   ]
+  //   const store = mockStore({ user: initalState })
+  //   store.dispatch(loginUser(data))
+  //   store.dispatch(loginUserFailure(error, LOGIN_USER.FAILURE))
+  //   let received = store.getActions()
+  //   expect(received).toEqual(expected)
+  // })
 })
 
+// Nock API
+describe ('User Actions '+LOGIN_USER.REQUEST, () => {
+  afterEach(() => {
+    nock.cleanAll()
+  })
 
+  it('should User Action '+LOGIN_USER.SUCCESS, () => {
+    nock('http://localhost:8000')
+      .post('/api/v1/login', data)
+      .reply(200, payload)
+    const store = mockStore({ auth: {} })
+    const recieved = store.getActions()
+    const expected = [
+      ACTION.REQUEST,
+      ACTION.SUCCESS
+    ]
+    return store.dispatch(loginUser(data))
+      .then(res => {
+        expect(recieved).toEqual(expected)
+      })
+  });
+  it('should User Action '+LOGIN_USER.FAILURE, () => {
+    nock('http://localhost:8000')
+      .post('/api/v1/login', data)
+      .replyWithError(error.message)
+    const store = mockStore({ auth: {} })
+    const recieved = store.getActions()
+    const expected = [
+      ACTION.REQUEST,
+      ACTION.FAILURE
+    ]
+    return store.dispatch(loginUser(data))
+      .then(res => {
+        expect(recieved).toEqual(expected)
+      })
+  });
+});

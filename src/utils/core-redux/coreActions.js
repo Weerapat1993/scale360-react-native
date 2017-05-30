@@ -1,17 +1,17 @@
+import axios from 'axios'
 
-export const actionRequest = (payload, type) => ({ payload, type })
+export const actionRequest = (type) => ({ type })
 export const actionSuccess = (payload, type) => ({ payload, type })
-export const actionFailure = (payload, type) => ({ payload, type })
+export const actionFailure = (error, type) => ({ error, type })
 
-export const fetchActions = (data) => (dispatch, getState) => {
-  dispatch(actionRequest(true, data.type.REQUEST))
-  return fetch(data.API)
-    .then(res => res.json())
-    .then(res => dispatch(actionSuccess(res, data.type.SUCCESS)))
-    .catch(error => dispatch(actionFailure(false, data.type.FAILURE, error)))
+export const asyncActions = (data) => (dispatch, getState) => {
+  dispatch(actionRequest(data.type.REQUEST))
+  return axios['get'](data.API)
+    .then(res => dispatch(actionSuccess(res.data, data.type.SUCCESS)))
+    .catch(error => dispatch(actionFailure(error, data.type.FAILURE)))
 }
 
 export const payloadActions = (data) => (dispatch, getState) => {
-  dispatch(actionRequest(true, data.type.REQUEST))
+  dispatch(actionRequest(data.type.REQUEST))
   dispatch(actionSuccess(data.payload, data.type.SUCCESS))
 }

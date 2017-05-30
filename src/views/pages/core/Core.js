@@ -11,7 +11,7 @@ import CoreForm from './CoreForm'
 import CoreItem from './CoreItem'
 import { Footer } from '../../components/flex'
 
-class Core extends React.Component {
+export class Core extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       const { cores, coreActions } = this.props

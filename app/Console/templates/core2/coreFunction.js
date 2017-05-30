@@ -1,55 +1,55 @@
 /**
- * LOADING TASK
+ * LOADING ${name_upper}
  * @param {*} state
  * @param {boolean} bool
  * @return {*}
  */
-export const loadingTask = (state, bool) => ({
+export const loading${name_pascal} = (state, bool) => ({
   ...state,
   loading: bool
 })
 
 /**
- * TASK REQUEST
+ * ${name_upper} REQUEST
  * @param {*} state
  * @param {*} action
  */
-export const taskRequest = (state, action) => (loadingTask(state, true))
+export const ${name}Request = (state, action) => (loading${name_pascal}(state, true))
 
 /**
- * TASK FAILURE
+ * ${name_upper} FAILURE
  * @param {*} state
  * @param {*} action
  */
-export const taskFailure = (state, action) => (loadingTask(state, false))
+export const ${name}Failure = (state, action) => (loading${name_pascal}(state, false))
 
 
 //=====================================
-//  FETCH_TASK
+//  FETCH_${name_upper}
 //-------------------------------------
 
 /**
- * FETCH API TASK SUCCESS
+ * FETCH API ${name_upper} SUCCESS
  * @param {*} state
  * @param {*} action
  * 
  */
-export const fetchTaskSuccess = (state, action) => ({
+export const fetch${name_pascal}Success = (state, action) => ({
   ...state,
   loading: false,
   data: action.payload
 })
 
 //=====================================
-//  CREATE_TASK
+//  CREATE_${name_upper}
 //-------------------------------------
 
 /**
- * CREATE NEW TASK SUCCESS
+ * CREATE NEW ${name_upper} SUCCESS
  * @param {*} state
  * @param {*} action
  */
-export const createTaskSuccess = (state, action) => ({
+export const create${name_pascal}Success = (state, action) => ({
   loading: false,
   data: [
     ...state.data,
@@ -58,15 +58,15 @@ export const createTaskSuccess = (state, action) => ({
 })
 
 //=====================================
-//  UPDATE_TASK
+//  UPDATE_${name_upper}
 //-------------------------------------
 
 /**
- * UPDATE TASK SUCCESS (item.key)
+ * UPDATE ${name_upper} SUCCESS (item.key)
  * @param {*} state
  * @param {*} action
  */
-export const updateTaskSuccess = (state,action) => {
+export const update${name_pascal}Success = (state,action) => {
   let news = state.data.filter((item) => action.payload.id === item.id)
   let newData = Object.assign({}, news[0], action.payload)
   let newState = state.data
@@ -82,15 +82,15 @@ export const updateTaskSuccess = (state,action) => {
 }
 
 //=====================================
-//  DELETE_TASK
+//  DELETE_${name_upper}
 //-------------------------------------
 
 /**
- * DELETE TASK SUCCESS (item.key)
+ * DELETE ${name_upper} SUCCESS (item.key)
  * @param {*} state
  * @param {*} action
  */
-export const deleteTaskSuccess = (state,action) => ({
+export const delete${name_pascal}Success = (state,action) => ({
   loading: false,
   data: state.data.filter((item) => action.payload !== item.id)
 })

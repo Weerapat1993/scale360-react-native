@@ -35,8 +35,9 @@ while true; do
                   perl -i -pe 's/Core/\${name_pascal}/g' ./app/Console/templates/core/tests/${test}.test.js
                   perl -i -pe 's/core/\${name}/g' ./app/Console/templates/core/tests/${test}.test.js
                   perl -i -pe 's/CORE/\${name_upper}/g' ./app/Console/templates/core/tests/${test}.test.js
+                  cp ./app/Console/templates/core/tests/${test}.test.js ./app/Console/templates/core/tests/${test}.js
+                  rm ./app/Console/templates/core/tests/${test}.test.js
                 done
-                
                 break;;
         [Nn]* ) exit;;
         * ) echo "Please answer yes or no.";;

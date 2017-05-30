@@ -1,13 +1,13 @@
-export function getCoreData(state) {
+export const getCoreData = (state) => {
   return state.core.data
 }
 
-export function getCoreQuery(props) {
+export const getCoreQuery = (props) => {
   const { filter } = props.location.query
   return filter
 }
 
-export function getCoreFilter(state, props) {
+export const getCoreFilter = (state, props) => {
   const core = getCoreData(state)
   const filter = getCoreQuery(props)
 

@@ -21,6 +21,15 @@ var error = {
 }
 
 describe('User Reducer', () => {
+  it(`should User Reducer : initialState`, () => {
+    const action = {
+      type: 'ETC'
+    }
+    const recieved = userReducer(undefined, action)
+    const expected = initialState
+    expect(recieved).toEqual(expected)
+  })
+
   it(`should User Reducer : ${LOGIN_USER.REQUEST}`, () => {
     const action = {
       type: LOGIN_USER.REQUEST
@@ -47,6 +56,14 @@ describe('User Reducer', () => {
     }
     const recieved = userReducer(initialState, action)
     const expected = loginUserFailure(initialState, action)
+    expect(recieved).toEqual(expected)
+  })
+  it(`should User Reducer : ETC`, () => {
+    const action = {
+      type: 'ETC',
+    }
+    const recieved = userReducer(initialState, action)
+    const expected = initialState
     expect(recieved).toEqual(expected)
   })
 })

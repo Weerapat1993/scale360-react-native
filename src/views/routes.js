@@ -6,7 +6,6 @@ import Core from './pages/core'
 import About from './pages/about'
 import Form from './pages/form'
 import Menu from './pages/menu'
-import Task from './pages/task'
 
 export default class Routes extends React.Component {
   render () {
@@ -20,8 +19,7 @@ export default class Routes extends React.Component {
         <Route name="about" component={About} title="About" schema="default" />
         <Route name="form" component={Form} title="Todo" schema="default" />
         <Route name="menu" component={Menu} title="Menu" schema="leftmenu" />
-
-        <Route name='task' component={Task} title='Task' schema='default' />
+        
       </Router>
     )
   }

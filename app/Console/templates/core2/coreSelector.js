@@ -1,13 +1,13 @@
-export const get${name_pascal}Data = (state) => {
+export function get${name_pascal}Data(state) {
   return state.${name}.data
 }
 
-export const get${name_pascal}Query = (props) => {
+export function get${name_pascal}Query(props) {
   const { filter } = props.location.query
   return filter
 }
 
-export const get${name_pascal}Filter = (state, props) => {
+export function get${name_pascal}Filter(state, props) {
   const ${name} = get${name_pascal}Data(state)
   const filter = get${name_pascal}Query(props)
 
