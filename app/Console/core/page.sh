@@ -19,7 +19,7 @@ while true; do
                   mkdir $destination
                 fi
                 cp -R $source $destination; 
-                files=( index styles Core CoreForm CoreItem )
+                files=( index styles Core CoreForm CoreList CoreItem )
                 for file in "${files[@]}"
                 do
                   echo "${green}create file${reset} ./app/Console/templates/pages/${file}.js"

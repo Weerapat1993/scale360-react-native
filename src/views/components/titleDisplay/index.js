@@ -1,1 +1,3 @@
-export * from './TitleDisplay'
+import TitleDisplay from './TitleDisplay'
+
+export default TitleDisplay

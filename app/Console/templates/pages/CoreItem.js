@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Switch, TouchableHighlight } from 'react-native'
+import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
 import { Button, FormInput, CheckBox } from 'react-native-elements'
 import { btnWarning, btnSuccess, btnDanger, defaultColor } from '../../styles/variables'
 import { Flex } from '../../components/flex'

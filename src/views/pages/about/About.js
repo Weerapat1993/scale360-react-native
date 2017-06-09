@@ -3,6 +3,11 @@ import { View, Text, Button } from 'react-native'
 import { styles } from './styles'
 
 class About extends React.Component {
+  constructor() {
+    super()
+
+    this.onPrev = this.onPrev.bind(this)
+  }
   onPrev(){
     const Actions = this.props.routes;
     if (this.props.onPrev){
@@ -18,7 +23,7 @@ class About extends React.Component {
     return (
       <View style={styles.container}>
         <Text>About</Text>
-        <Button onPress={() => this.onPrev()} title="Go to Home page" />
+        <Button onPress={this.onPrev} title="Go to Home page" />
       </View>
     )
   }

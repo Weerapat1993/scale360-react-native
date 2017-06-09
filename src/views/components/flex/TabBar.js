@@ -45,9 +45,14 @@ const styles = StyleSheet.create({
 class TabBar extends React.Component { 
   constructor() {
     super()
+
     this.state = {
       selectedTab: 'home',
     }
+
+    this.renderIcon = this.renderIcon.bind(this)
+    this.renderSelectedIcon = this.renderSelectedIcon.bind(this)
+    this.changeTab = this.changeTab.bind(this)
   }
 
   changeTab (selectedTab) {
@@ -71,9 +76,9 @@ class TabBar extends React.Component {
         selectedTitleStyle={styles.selectedTitleStyle}
         selected={selectedTab === item.name}
         title={selectedTab === item.name ? item.name.toUpperCase() : null}
-        renderIcon={() => this.renderIcon(item.icon)}
-        renderSelectedIcon={() => this.renderSelectedIcon(item.icon)}
-        onPress={() => this.changeTab(item.name)}>
+        renderIcon={this.renderIcon(item.icon)}
+        renderSelectedIcon={this.renderSelectedIcon(item.icon)}
+        onPress={this.changeTab(item.name)}>
         <Icon color={'#6296f9'} name={item.icon} size={30} />
       </Tab>
     ))

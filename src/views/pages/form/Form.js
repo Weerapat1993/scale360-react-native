@@ -10,6 +10,12 @@ import TitleDisplay from '../../components/titleDisplay'
 import { Layout } from '../../components/flex'
 
 export class Form extends React.Component {
+  constructor() {
+    super()
+
+    this.onPrev = this.onPrev.bind(this)
+  }
+  
   onPrev(){
     const Actions = this.props.routes;
     if (this.props.onPrev){
@@ -29,12 +35,11 @@ export class Form extends React.Component {
 
   render () {
     const { navigator, error, loading, login } = this.props
-    console.log(this.props)
     return (
       <Layout navigator={navigator}>
         {
           (loading) ? <TitleDisplay title='Loading...' /> :
-          <LoginForm onSubmit={this.handleSubmit} onPrev={() => this.onPrev()} /> 
+          <LoginForm onSubmit={this.handleSubmit} onPrev={this.onPrev} /> 
         }
         { (error || login) ? <TitleDisplay title={error} /> : <View /> }
       </Layout>

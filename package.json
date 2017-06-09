@@ -13,6 +13,8 @@
     "eslint-plugin-react": "^6.10.3",
     "expect": "^1.20.2",
     "jest-expo": "^0.4.0",
+    "json-server": "^0.10.1",
+    "mysql": "^2.13.0",
     "nock": "^9.0.13",
     "react-addons-test-utils": "^15.5.1",
     "react-native-scripts": "0.0.29",

@@ -53,7 +53,7 @@ then
   fi
 
   # Files Pages #
-  files=( Form Item )
+  files=( Form List Item )
   for file in "${files[@]}"
   do
     if ! [ -e "./src/views/pages/${CORE}/${CORE}${file}.js" ]
