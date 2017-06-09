@@ -25,7 +25,7 @@ then
   name_pascal=$(echo $CORE | tr '[:lower:]' '[:upper:]' <<< ${CORE:0:1})${CORE:1};
 
   # File Directory #
-  directory=( ./src ./src/views ./src/views/pages ./src/views/pages/${CORE} )
+  directory=( ./src ./src/views ./src/views/pages ./src/views/pages/${CORE} ./src/views/pages/${CORE}/tests )
   for dir in "${directory[@]}"
   do
     if ! [ -d "$dir" ]
@@ -62,6 +62,22 @@ then
       sh ./app/Console/build.sh ./app/Console/templates/pages/Core${file}.js ./src/views/pages/${CORE}/${name_pascal}${file}.js
     fi
   done
+
+  # File Tests #
+  tests=( Form Item List )
+  for test in "${tests[@]}"
+  do
+    if ! [ -e "./src/views/pages/${CORE}/tests/${CORE}${test}.test.js" ]
+    then
+      sh ./app/Console/build.sh ./app/Console/templates/pages/tests/Core${test}.js ./src/views/pages/${CORE}/tests/${name_pascal}${test}.test.js
+    fi
+  done
+  
+  # File Last Test #
+  if ! [ -e "./src/views/pages/${CORE}/tests/${name_pascal}.test.js" ]
+  then
+    sh ./app/Console/build.sh ./app/Console/templates/pages/tests/Core.js ./src/views/pages/${CORE}/tests/${name_pascal}.test.js
+  fi
 
   if [ $CHECK -eq 0 ]
   then

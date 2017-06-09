@@ -2,25 +2,6 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { Tabs, Tab, Icon } from 'react-native-elements'
 
-const tabs = [
-  {
-    name: 'home',
-    icon: 'home',
-  },
-  {
-    name: 'feed',
-    icon: 'whatshot',
-  },
-  {
-    name: 'profile',
-    icon: 'person',
-  },
-  {
-    name: 'about',
-    icon: 'info',
-  }
-]
-
 const styles = StyleSheet.create({
   tabBarStyle: {
     backgroundColor: '#3f51b5',
@@ -69,6 +50,7 @@ class TabBar extends React.Component {
 
   render() {
     const { selectedTab } = this.state
+    const { tabs } = this.props
     const data = tabs.map((item, i) => (
       <Tab
         key={i}

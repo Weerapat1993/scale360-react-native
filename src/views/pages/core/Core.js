@@ -10,14 +10,7 @@ import CoreForm from './CoreForm'
 import CoreList from './CoreList'
 import { Footer } from '../../components/flex'
 
-class Core extends Component {
-  constructor() {
-    super()
-
-    this.updateCore = this.updateCore.bind(this)
-    this.deleteCore = this.deleteCore.bind(this)
-  }
-
+export class Core extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.props.coreActions.fetchCore()
@@ -61,8 +54,8 @@ class Core extends Component {
         <CoreList
           data={cores}
           loading={loading}
-          updateCore={this.updateCore}
-          deleteCore={this.deleteCore}
+          updateCore={this.updateCore.bind(this)}
+          deleteCore={this.deleteCore.bind(this)}
         />
         <Footer />
       </View>

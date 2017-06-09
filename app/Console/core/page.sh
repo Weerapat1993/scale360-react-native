@@ -27,6 +27,17 @@ while true; do
                   perl -i -pe 's/core/\${name}/g' ./app/Console/templates/pages/${file}.js
                   perl -i -pe 's/CORE/\${name_upper}/g' ./app/Console/templates/pages/${file}.js
                 done
+                tests=( Core CoreForm CoreList CoreItem )
+                for test in "${tests[@]}"
+                do
+                  echo "${green}create file${reset} ./app/Console/templates/pages/test/${test}.test.js"
+                  perl -i -pe 's/Core/\${name_pascal}/g' ./app/Console/templates/pages/tests/${test}.test.js
+                  perl -i -pe 's/core/\${name}/g' ./app/Console/templates/pages/tests/${test}.test.js
+                  perl -i -pe 's/CORE/\${name_upper}/g' ./app/Console/templates/pages/tests/${test}.test.js
+                  cp ./app/Console/templates/pages/tests/${test}.test.js ./app/Console/templates/pages/tests/${test}.js
+                  rm ./app/Console/templates/pages/tests/${test}.test.js
+                done
+
                 echo "\n${green}please edit file path in [pages] templates \n ${reset}"
                 echo " ./app/Console/templetes/pages/Core.js"
                 echo "${green}import { \${name}Actions } from '../../../core/\${name}'\n ${reset}"
