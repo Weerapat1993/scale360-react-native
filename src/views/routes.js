@@ -6,21 +6,20 @@ import Core from './pages/core'
 import About from './pages/about'
 import Form from './pages/form'
 import Menu from './pages/menu'
+import Skill from './pages/skill'
 
-export default class Routes extends React.Component {
-  render () {
-    return (
-      <Router>
-        <Schema name="default" sceneConfig={Animations.FlatFloatFromRight}/>
-        <Schema name="leftmenu" sceneConfig={Animations.FlatFloatFromBottom}/>
+const Routes = () => (
+  <Router>
+    <Schema name="default" sceneConfig={Animations.FlatFloatFromRight}/>
+    <Schema name="leftmenu" sceneConfig={Animations.FlatFloatFromBottom}/>
 
-        <Route name="home" component={Home} title="Home" type="replace"/>
-        <Route name="core" component={Core} title="Core" schema="default" />
-        <Route name="about" component={About} title="About" schema="default" />
-        <Route name="form" component={Form} title="Todo" schema="default" />
-        <Route name="menu" component={Menu} title="Menu" schema="leftmenu" />
-        
-      </Router>
-    )
-  }
-}
+    <Route name="home" component={Home} title="Home" type="replace"/>
+    <Route name="core" component={Core} title="Core" schema="default" />
+    <Route name="about" component={About} title="About" schema="default" />
+    <Route name="form" component={Form} title="Todo" schema="default" />
+    <Route name="menu" component={Menu} title="Menu" schema="leftmenu" />
+    <Route name="skill" component={Skill} title="Skill" schema="default" />
+  </Router>
+)
+
+export default Routes

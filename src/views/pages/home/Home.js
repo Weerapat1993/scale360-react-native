@@ -11,7 +11,7 @@ const styles = {
 export class Home extends React.Component {
   render () {
     return (
-      <Layout>
+      <Layout title='Home'>
         <Flex style={styles}>
           <Button onPress={Actions['menu']} title='Go to Menu' />
         </Flex>
@@ -20,6 +20,9 @@ export class Home extends React.Component {
         </Flex>
         <Flex style={styles}>
           <Button onPress={Actions['form']} title='Go to Form' backgroundColor='red' />
+        </Flex>
+        <Flex style={styles}>
+          <Button onPress={Actions['skill']} title='Skill Simulator' backgroundColor='blue' />
         </Flex>
         <Flex style={styles}>
           <Button onPress={Actions['about']} title='Go to About' backgroundColor='green' />
