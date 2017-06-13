@@ -1,0 +1,24 @@
+{
+  "classes": [
+    {
+      "id": 1,
+      "name": "Warrior",
+      "icon": "http://treeofsavior-th.com/images/icon-class/swordsman.png"
+    },
+    {
+      "id": 2,
+      "name": "Wizard",
+      "icon": "http://treeofsavior-th.com/images/icon-class/swordsman.png"
+    },
+    {
+      "id": 3,
+      "name": "Archer",
+      "icon": "http://treeofsavior-th.com/images/icon-class/archer.png"
+    },
+    {
+      "id": 4,
+      "name": "Cieric",
+      "icon": "http://treeofsavior-th.com/images/icon-class/cleric.png"
+    }
+  ]
+}

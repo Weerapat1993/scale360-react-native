@@ -1,7 +1,10 @@
 import { StyleSheet } from 'react-native'
 import * as variables from '../../styles/variables'
 
-export const styles = StyleSheet.create({
+export const pageStyles = StyleSheet.create({
+  flex: {
+    flex: 1,
+  },
   container: {
     marginTop: 25,
     flex: 1,

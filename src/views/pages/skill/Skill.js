@@ -1,33 +1,38 @@
 import React, { Component } from 'react'
 import { View, Text, Button } from 'react-native'
-import { styles } from './styles'
+import { pageStyles } from './styles'
 import { Layout } from '../../components/flex'
+import { onPrev } from '../../../utils'
+
+import data from '../../assets/data/classes.json'
+import SkillSearch from './SkillSearch'
+import SkillList from './SkillList'
 
 class Skill extends Component {
   constructor() {
     super()
 
-    this.onPrev = this.onPrev.bind(this)
+    this.state = {
+      keyword: null
+    }
+
+    this.handleKeyMessage = this.handleKeyMessage.bind(this)
   }
-  onPrev(){
-    const { routes, onPrev, navigator } = this.props
-    const Actions = routes;
-    if (onPrev){
-        onPrev();
-        return;
-    }
-    if (navigator && navigator.getCurrentRoutes().length > 1){
-        Actions.pop();
-    }
+
+
+
+  handleKeyMessage(value) {
+    this.setState({ keyword: value })
+    console.log(this.state.keyword)
   }
 
   render() {
+    // const { skills } = this.props
+    const skills = data.classes
     return (
       <Layout title='Skill'>
-        <View style={styles.container}>
-          <Text>Skill Simmulator</Text>
-          <Button onPress={this.onPrev} title="Go to Home page" />
-        </View>
+        <SkillSearch onKey={this.handleKeyMessage} />
+        <SkillList data={skills} />
       </Layout>
     )
   }
